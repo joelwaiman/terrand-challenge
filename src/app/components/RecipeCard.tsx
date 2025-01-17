@@ -76,7 +76,6 @@ export default function RecipeCard({ recipe, currentUserId, onRatingChange, onDe
               onClick={() => handleRating(star)}
               disabled={isRating || recipe.userId === currentUserId}
               className={`text-2xl ${star <= recipe.averageRating ? 'text-yellow-500' : 'text-gray-300'} ${recipe.userId === currentUserId ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-              aria-label={`Calificar ${star} estrellas`}
             >
               ★
             </button>

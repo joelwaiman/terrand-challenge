@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import RecipeCard from './components/RecipeCard';
 
@@ -42,21 +41,6 @@ export default function Home() {
     <div className="min-h-screen">
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8 text-center">Bienvenido a Foodly</h1>
-
-        <div className="mb-8 text-center">
-          <Link
-            href="/register"
-            className="bg-[#c5ab6b] hover:bg-[#ad9558] text-white font-bold py-2 px-4 rounded mr-4"
-          >
-            Registrarse
-          </Link>
-          <Link
-            href="/login"
-            className="bg-[#578E7E] hover:bg-[#437567] text-white font-bold py-2 px-4 rounded"
-          >
-            Iniciar Sesión
-          </Link>
-        </div>
 
         <div className="flex flex-col w-full items-center">
           {recipes === null ?
