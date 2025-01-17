@@ -1,7 +1,19 @@
-import type { NextConfig } from "next";
+import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false }; // Ejemplo de personalización
+    return config;
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**', // Permite cualquier dominio
+      },
+    ],
+  },
 };
 
 export default nextConfig;
