@@ -4,11 +4,8 @@ import clientPromise from '@/app/utils/db';
 import { ObjectId } from 'mongodb';
 import { ratingSchema, RatingInput } from '@/app/utils/schemas';
 
-export async function POST(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;
+export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const token = req.headers.get('Authorization')?.split(' ')[1];
 
   if (!token) {
