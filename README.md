@@ -7,7 +7,7 @@
 - **Crear recetas**: Comparte tus propias recetas y edítalas en cualquier momento.
 - **Valorar recetas**: Califica las recetas con un sistema de estrellas para ayudar a otros a elegir las mejores opciones.
 
----
+Deploy: https://terrand-challenge.vercel.app/
 
 ## Tecnologías utilizadas
 
