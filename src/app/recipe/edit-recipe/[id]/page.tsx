@@ -77,7 +77,13 @@ export default function EditarReceta({ params }: { params: Promise<{ id: string 
     }
   };
 
-  if (isLoading) return <div>Cargando...</div>;
+  if (isLoading) return <div className='mx-auto max-w-[90%]'>
+    <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+    <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+    <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+    <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+    <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+  </div>;
   if (error) return <div>{error}</div>;
   if (!recipe) return <div>No se encontró la receta</div>;
 
@@ -96,7 +102,7 @@ export default function EditarReceta({ params }: { params: Promise<{ id: string 
             value={recipe.title}
             onChange={handleChange}
             required
-            className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+            className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
           />
         </div>
         <div>
@@ -109,7 +115,7 @@ export default function EditarReceta({ params }: { params: Promise<{ id: string 
             value={recipe.description}
             onChange={handleChange}
             required
-            className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+            className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
           />
         </div>
         <div>
@@ -122,7 +128,7 @@ export default function EditarReceta({ params }: { params: Promise<{ id: string 
             value={recipe.ingredients}
             onChange={handleChange}
             required
-            className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+            className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
           />
         </div>
         <div>
@@ -133,7 +139,7 @@ export default function EditarReceta({ params }: { params: Promise<{ id: string 
             name="imageUrl"
             value={recipe.imageUrl || ''}
             onChange={handleChange}
-            className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+            className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
           />
         </div>
         <button

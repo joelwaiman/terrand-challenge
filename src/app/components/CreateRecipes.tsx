@@ -76,7 +76,7 @@ export default function CreateRecipe({ NewRecipe }: CreateRecipeProps) {
           name="title"
           value={formData.title}
           onChange={handleChange}
-          className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+          className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
           required
         />
         {errors.title && <p className="text-red-500 mt-1">{errors.title}</p>}
@@ -88,7 +88,7 @@ export default function CreateRecipe({ NewRecipe }: CreateRecipeProps) {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+          className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
           required
         />
         {errors.description && <p className="text-red-500 mt-1">{errors.description}</p>}
@@ -100,7 +100,7 @@ export default function CreateRecipe({ NewRecipe }: CreateRecipeProps) {
           name="ingredients"
           value={formData.ingredients}
           onChange={handleChange}
-          className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+          className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
           required
         />
         {errors.ingredients && <p className="text-red-500 mt-1">{errors.ingredients}</p>}
@@ -113,7 +113,7 @@ export default function CreateRecipe({ NewRecipe }: CreateRecipeProps) {
           name="imageUrl"
           value={formData.imageUrl === null ? '/default.png' : formData.imageUrl}
           onChange={handleChange}
-          className="mt-1 block w-full bg-black rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
+          className="mt-1 block w-full bg-black/30 rounded-md p-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-[#FFFAEC] focus:ring-opacity-50"
         />
         {errors.imageUrl && <p className="text-red-500 mt-1">{errors.imageUrl}</p>}
       </div>

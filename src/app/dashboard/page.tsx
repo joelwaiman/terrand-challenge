@@ -67,13 +67,16 @@ export default function Dashboard() {
             <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
           </>
         ) : recipes.length < 1 ? (
-          <Image
-            className="w-80 h-80 opacity-60"
-            src={'/empty.png'}
-            alt="empty box"
-            width={200}
-            height={200}
-          />
+          <>
+            <Image
+              className="mt-40 w-96 h-96 opacity-60"
+              src={'/empty.png'}
+              alt="empty box"
+              width={200}
+              height={200}
+            />
+            <p className='text-black/60 text-6xl'>No hay recetas</p>
+          </>
         ) : (
           recipes.map((recipe, index) => (
             <RecipeCard
