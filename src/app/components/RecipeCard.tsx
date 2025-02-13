@@ -16,6 +16,8 @@ export default function RecipeCard({ recipe, currentUserId, onRatingChange, onDe
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleRating = async (rating: number) => {
+    if (recipe.userId === currentUserId) return; // Evita la calificación si el usuario es el autor
+
     setIsRating(true);
     const token = localStorage.getItem('token');
     const response = await fetch(`/api/recipes/${recipe._id}/rate`, {

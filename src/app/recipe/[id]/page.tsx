@@ -1,88 +1,57 @@
-import { notFound } from 'next/navigation';
-import clientPromise from '@/app/utils/db';
-import Image from 'next/image';
-import { ObjectId } from 'mongodb';
-import type { Metadata, ResolvingMetadata } from 'next';
+import { notFound } from "next/navigation"
+import clientPromise from "@/app/utils/db"
+import Image from "next/image"
+import { ObjectId } from "mongodb"
 
-// Esta función genera los metadatos dinámicos de la receta
-export async function generateMetadata(
-  { params }: { params: Promise<{ id: string }> },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // Recupera la receta desde la base de datos utilizando el id
-  const { id } = await params; // Espera que params sea un Promise
-  const client = await clientPromise;
-  const db = client.db("recetas_app");
-  const recipesCollection = db.collection("recipes");
+export default async function PublicRecipe({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params //SE RODEA EL OBJETO QUE LLEGA EN PARAMS Y SE AWAIT LUEGO
 
-  const recipe = await recipesCollection.findOne({ _id: new ObjectId(id) });
+  const client = await clientPromise
+  const db = client.db("recetas_app")
+  const recipesCollection = db.collection("recipes")
+
+  const recipe = await recipesCollection.findOne({ _id: new ObjectId(id) })
 
   if (!recipe) {
-    throw new Error("Receta no encontrada");
-  }
-
-  // Si es necesario, accede y extiende los metadatos previos (como openGraph)
-  const previousOpenGraph = (await parent).openGraph?.images || [];
-
-  return {
-    title: recipe.title,
-    description: recipe.description,
-    openGraph: {
-      title: recipe.title,
-      description: recipe.description,
-      images: [recipe.imageUrl || '/default.png', ...previousOpenGraph],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: recipe.title,
-      description: recipe.description,
-      images: [recipe.imageUrl || '/default.png'],
-    },
-  };
-}
-
-// El componente de la página de la receta
-export default async function RecetaPublica({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params; // Espera que params sea un Promise
-
-  const client = await clientPromise;
-  const db = client.db("recetas_app");
-  const recipesCollection = db.collection("recipes");
-
-  const recipe = await recipesCollection.findOne({ _id: new ObjectId(id) });
-
-  if (!recipe) {
-    notFound();
+    notFound()
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="shadow-xl rounded-lg overflow-hidden">
-          <div className="md:flex">
-            <div className="flex items-center justify-center">
-              <Image
-                src={recipe.imageUrl || "/default.png"}
-                alt={recipe.title}
-                width={100}
-                height={100}
-                className="rounded-lg object-cover w-48 h-48"
-              />
-            </div>
-            <div className="p-8">
-              <h2 className="mt-2 text-3xl leading-8 font-extrabold sm:text-4xl">
-                {recipe.title}
-              </h2>
-              <p className="mt-4 text-gray-300">
-                {recipe.ingredients}
-              </p>
-              <p className="mt-4 text-gray-500">
-                {recipe.description}
-              </p>
-            </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6">Detalles de la Receta</h1>
+      <div className="flex relative w-full items-center gap-4 shadow-md rounded-lg p-4 mb-4 border border-gray-600">
+        <div className="mb-4">
+          <Image
+            src={recipe.imageUrl || "/default.png"}
+            alt={recipe.title}
+            width={100}
+            height={100}
+            className="rounded-lg object-cover w-48 h-fit"
+          />
+        </div>
+        <div className="relative">
+          <p className="text-gray-500 mb-2">@{recipe.author}</p>
+          <h2 className="text-xl font-bold mb-2">{recipe.title}</h2>
+          <p className="mb-2">{recipe.description}</p>
+          <div className="flex items-center mb-2">
+            <span className="mr-2">Calificación:</span>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span
+                key={star}
+                className={`text-2xl ${star <= recipe.averageRating ? "text-yellow-500" : "text-gray-300"}`}
+              >
+                ★
+              </span>
+            ))}
+            <span className="ml-2">({recipe.averageRating ? recipe.averageRating.toFixed(1) : "0.0"})</span>
+          </div>
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold mb-2">Ingredientes:</h3>
+            <p>{recipe.ingredients}</p>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
+

@@ -71,7 +71,13 @@ export default function Feed() {
       <CreateRecipe NewRecipe={handleNewRecipe} />
       <div className="flex flex-col w-full items-center">
         {recipes === null ? (
-          <p className="text-gray-500 text-lg mt-10">Cargando recetas...</p>
+          <>
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+          </>
         ) : recipes.length < 1 ? (
           <Image
             className="w-80 h-80 opacity-60"

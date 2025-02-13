@@ -35,7 +35,7 @@ export default function Dashboard() {
       if (response.ok) {
         const data = await response.json();
         setRecipes(data.sort((a: Recipe, b: Recipe) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
-      } else{
+      } else {
         console.error('Error fetching recipes');
         setRecipes([])
       }
@@ -48,7 +48,7 @@ export default function Dashboard() {
   const handleDeleteRecipe = (id: string) => {
     if (recipes !== null) {
       setRecipes(recipes.filter(recipe => recipe._id !== id));
-    } else{
+    } else {
       setRecipes([])
     }
 
@@ -57,9 +57,15 @@ export default function Dashboard() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Mis Recetas</h1>
-      <div className="flex flex-col w-full items-center gap-6">
+      <div className="flex flex-col w-full items-center">
         {recipes === null ? (
-          <p className="text-gray-500 text-lg mt-10">Cargando recetas...</p>
+          <>
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+          </>
         ) : recipes.length < 1 ? (
           <Image
             className="w-80 h-80 opacity-60"

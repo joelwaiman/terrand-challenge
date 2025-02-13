@@ -11,22 +11,25 @@ export default function Login() {
     password: '',
   });
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const { login } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-  
+
     // COVERTIMOS A CASE SENSITIVE EL INPUT DEL EMAIL
     setFormData({
       ...formData,
       [name]: name === 'email' ? value.toLowerCase() : value,
     });
   };
-  
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true)
+
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
@@ -44,6 +47,8 @@ export default function Login() {
       }
     } catch (error) {
       setError('Error en el inicio de sesión');
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -81,7 +86,12 @@ export default function Login() {
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold bg-[#578E7E] hover:bg-[#3c695c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F5ECD5] transition-colors duration-150"
           >
-            Iniciar Sesión
+            {!loading ?
+              <p>Iniciar Sesión</p>
+              :
+              <div className="w-5 h-5 border-4 border-t-[#578E7E] border-gray-300 rounded-full animate-spin" />
+            }
+
           </button>
         </form>
         <p className='text-center'>Aún no tienes una cuenta? <Link href={"/register"} className='font-bold text-[#c5ab6b] transition-colors duration-150'>Registrate</Link></p>

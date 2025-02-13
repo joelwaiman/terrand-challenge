@@ -44,27 +44,33 @@ export default function Home() {
 
         <div className="flex flex-col w-full items-center">
           {recipes === null ?
-            <p className="text-gray-500 text-lg mt-10">Cargando recetas...</p>
-           : recipes.length < 1 ? (
-            <Image
-              className="mt-20 w-80 h-80 opacity-60"
-              src={'/empty.png'}
-              alt="empty box"
-              width={200}
-              height={200}
-            />
-          ) : (
-            recipes.map((recipe) => (
-              <RecipeCard
-                key={recipe._id}
-                recipe={recipe}
-                currentUserId={userId}
-                onRatingChange={fetchRecipes}
-                onDelete={() => {}}
-                isPublic={true}
+            <>
+              <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+              <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+              <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+              <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+              <div className="bg-gray-700 animate-pulse w-full h-[15vh] mt-10 rounded-lg" />
+            </>
+            : recipes.length < 1 ? (
+              <Image
+                className="mt-20 w-80 h-80 opacity-60"
+                src={'/empty.png'}
+                alt="empty box"
+                width={200}
+                height={200}
               />
-            ))
-          )}
+            ) : (
+              recipes.map((recipe) => (
+                <RecipeCard
+                  key={recipe._id}
+                  recipe={recipe}
+                  currentUserId={userId}
+                  onRatingChange={fetchRecipes}
+                  onDelete={() => { }}
+                  isPublic={true}
+                />
+              ))
+            )}
         </div>
       </main>
     </div>
